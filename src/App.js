@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import AllBlogs from './components/AllBlogs';
@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import About from './components/About';
 import Contact from './components/Contact';
 import ErrorPage from './components/ErrorPage';
+
 
 //function that has a scroll to top button appear upon scrolling down on pages which, when clicked, will take you to top of page
 function ScrollToTop() {
@@ -22,10 +23,11 @@ function ScrollToTop() {
 }
 
 function App() {
+ 
   return (
     <main className="App">
       <header>
-        <Navigation />
+        <Navigation siteData = {siteData}/>
       </header>
       <ScrollToTop />
       <Switch>

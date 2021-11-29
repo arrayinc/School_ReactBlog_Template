@@ -1,8 +1,13 @@
 //imports from react
 import { NavDropdown, Nav, Navbar, Button, Image } from "react-bootstrap";
-
+import { useState} from 'react'
+import Admin from './Admin';
+import siteData from '../SiteData';
 //generates a header navigation bar with clickable links to navigate to different pages
 function Navigation() {
+  const [content, setContent] = useState(siteData)
+  const [show, setShow] = useState(false); 
+  const handleShow = () => setShow(true);
   return (
     <>
       <Navbar collapseOnSelect className="navBar" expand="lg" bg="secondary" variant="dark">
@@ -32,10 +37,15 @@ function Navigation() {
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
+        
+        <Button className="header-button mx-5" size="lg" variant="outline-dark" onClick={handleShow}>Admin</Button>  
+        
+
         <Button className="header-button mx-5" size="lg" variant="outline-dark">
           Sign In
         </Button>
       </Navbar>
+      <Admin content={content} updateContent={setContent} defaultContent={siteData} setShow={setShow} show={show} />
     </>
   );
 }

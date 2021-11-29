@@ -4,7 +4,7 @@ import HomepageCarousel from "./HomePageCarousel";
 const Homepage = ({ blogInfo }) => {
     return (
         <>
-        <HomepageCarousel blogInfo={blogInfo} />
+        {/* <HomepageCarousel blogInfo={blogInfo} /> */}
         <BlogPostCards blogInfo={blogInfo} />
         </>
     );

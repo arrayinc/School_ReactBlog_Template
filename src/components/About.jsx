@@ -20,49 +20,49 @@ const About = ({ blogInfo }) => {
 
   //sets an image onClick event on images themselves that when clicked will display defined authorClicked info in defined bio container
   return (
-      <Container className="about-container" fluid >
-          <Row>
-            <Col>
-              <Image
-                onClick={() => {
-                  setAuthorClicked(blogInfo[0].author);
-                  setPictureOpacity(0);
-                }}
-                className="about-image"
-                src={blogInfo[0].author.avatar}
-                roundedCircle
-              />
-            </Col>
-            <Col>
-              <Image
-                onClick={() => {
-                  setAuthorClicked(blogInfo[1].author);
-                  setPictureOpacity(1);
-                }}
-                className="about-image"
-                src={blogInfo[1].author.avatar}
-                roundedCircle
-              />
-            </Col>
-            <Col>
-              <Image
-                onClick={() => {
-                  setAuthorClicked(blogInfo[2].author);
-                  setPictureOpacity(2);
-                }}
-                className="about-image"
-                src={blogInfo[2].author.avatar}
-                roundedCircle
-              />
-            </Col>
-          </Row>
-        <Container className="bio-container">
-          {authorClicked === 0 ? <h1>Click an Author</h1> : ''}
-          <h1>{authorClicked.name}</h1>
-          <h5>{authorClicked.age}</h5>
-          <h4>{authorClicked.about}</h4>
-        </Container>
+    <Container className="about-container" fluid >
+      <Row>
+        <Col>
+          <Image
+            onClick={() => {
+              setAuthorClicked(blogInfo[0].author);
+              setPictureOpacity(0);
+            }}
+            className="about-image"
+            src={blogInfo[0].author.avatar}
+            roundedCircle
+          />
+        </Col>
+        <Col>
+          <Image
+            onClick={() => {
+              setAuthorClicked(blogInfo[1].author);
+              setPictureOpacity(1);
+            }}
+            className="about-image"
+            src={blogInfo[1].author.avatar}
+            roundedCircle
+          />
+        </Col>
+        <Col>
+          <Image
+            onClick={() => {
+              setAuthorClicked(blogInfo[2].author);
+              setPictureOpacity(2);
+            }}
+            className="about-image"
+            src={blogInfo[2].author.avatar}
+            roundedCircle
+          />
+        </Col>
+      </Row>
+      <Container className="bio-container">
+        {authorClicked === 0 ? <h1>Click an Author</h1> : ''}
+        <h1>{authorClicked.name}</h1>
+        <h5>{authorClicked.age}</h5>
+        <h4>{authorClicked.about}</h4>
       </Container>
+    </Container>
   );
 }
 export default About;
