@@ -23,7 +23,7 @@ function Navigation() {
             <NavDropdown
               className="mx-5"
               title="Blogs"
-              id="collasible-nav-dropdown"
+              id="collapsible-nav-dropdown"
             >
               <NavDropdown.Item className="blog-dropdown" href="/html">HTML</NavDropdown.Item>       
               <NavDropdown.Item className="blog-dropdown" href="/javascript">JavaScript</NavDropdown.Item>
