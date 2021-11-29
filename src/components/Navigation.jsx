@@ -1,8 +1,21 @@
 //imports from react
+import {useState} from 'react';
 import { NavDropdown, Nav, Navbar, Button, Image } from "react-bootstrap";
+import Admin from '../components/Admin'
+import siteData from '../SiteData';
 
 //generates a header navigation bar with clickable links to navigate to different pages
 function Navigation() {
+
+  //these are to set up the modal
+  const [show, setShow] = useState(false);
+  
+  const handleShow = () => {
+    console.log("here")
+    setShow(true);
+  }
+ 
+
   return (
     <>
       <Navbar collapseOnSelect className="navBar" expand="lg" bg="secondary" variant="dark">
@@ -18,7 +31,7 @@ function Navigation() {
             <NavDropdown
               className="mx-5"
               title="Blogs"
-              id="collasible-nav-dropdown"
+              id="collapsible-nav-dropdown"
             >
               <NavDropdown.Item className="blog-dropdown" href="/html">HTML</NavDropdown.Item>       
               <NavDropdown.Item className="blog-dropdown" href="/javascript">JavaScript</NavDropdown.Item>
@@ -35,6 +48,8 @@ function Navigation() {
         <Button className="header-button mx-5" size="lg" variant="outline-dark">
           Sign In
         </Button>
+        <Button onClick={handleShow}>Admin</Button>
+        <Admin defaultContent={siteData} setShow={setShow} show={show}/>
       </Navbar>
     </>
   );
