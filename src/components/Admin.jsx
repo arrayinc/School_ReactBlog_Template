@@ -1,5 +1,7 @@
 import{ Form, Modal, Container, Button } from 'react-bootstrap'
-import { useState, useEffect} from 'react'
+import { useState} from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import { addContent, selectContent } from "../state/contentSlice";
 
 /******************************************
  * INSTALL INSTRUCTIONS TO USE THIS ADMIN PAGE IN THE BLOG*
@@ -79,20 +81,11 @@ content is still the list plus (eventually) any additions,
  defaultContent gives us access to the data file in order to reset the site to original conditions.
  setShow(function) and show(boolean) are for the modal.*/
 
-const Admin = ({updateContent, defaultContent, content, setShow, show}) => {
-
+const Admin = ({ defaultContent, setShow, show}) => {
+  const dispatch = useDispatch(); // redux addition
+  const content = useSelector(selectContent);
 const [response, setResponse] = useState({title: ""}); //we use this to keep track of the form input, see handleSubmit
- 
-//check to see if local storage has content, and if not set updated library to what is in local storage
-  useEffect(() => {
-    let storedContent = JSON.parse(localStorage.getItem("storedContent"));
-    storedContent ? updateContent(storedContent) : localStorage.setItem("storedContent", JSON.stringify(content))
-  },[updateContent])
 
-//puts whatever is in library into local storage when library changes
-  useEffect(() => {
-   localStorage.setItem("storedContent", JSON.stringify(content))  
-  }, [content])
   
   //this function takes the form responses and makes them in to a key value pair, then puts it into 'response'
   const updateField = (e) => {
@@ -107,7 +100,8 @@ const [response, setResponse] = useState({title: ""}); //we use this to keep tra
  // reset the site to original content   
   const resetSite = () => {
     handleClose();
-    updateContent(defaultContent);
+    localStorage.setItem("storedContent", JSON.stringify(defaultContent)) 
+    window.location.reload(false);
   }
 
 //send updated library content back to app.js
@@ -116,9 +110,9 @@ const [response, setResponse] = useState({title: ""}); //we use this to keep tra
         handleClose()
         let updateContentArr =[ 
             ...content, response];
-          console.log(content)
+        
           if (response.title) {   //this is to fix adding an empty {} to updateArr on submit
-         updateContent(updateContentArr)  
+         dispatch(addContent(updateContentArr))
         setResponse({}) 
           }
     }

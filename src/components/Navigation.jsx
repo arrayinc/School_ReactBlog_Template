@@ -5,7 +5,7 @@ import Admin from './Admin';
 import siteData from '../SiteData';
 //generates a header navigation bar with clickable links to navigate to different pages
 function Navigation() {
-  const [content, setContent] = useState(siteData)
+
   const [show, setShow] = useState(false); 
   const handleShow = () => setShow(true);
   return (
@@ -45,7 +45,7 @@ function Navigation() {
           Sign In
         </Button>
       </Navbar>
-      <Admin content={content} updateContent={setContent} defaultContent={siteData} setShow={setShow} show={show} />
+      <Admin  defaultContent={siteData} setShow={setShow} show={show} />
     </>
   );
 }
