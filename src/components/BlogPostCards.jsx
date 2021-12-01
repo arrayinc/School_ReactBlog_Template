@@ -1,7 +1,17 @@
 import { Card, Button, CardGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { selectContent, deleteContent } from "../state/contentSlice";
 
-const BlogPostCards = ({ blogInfo }) => {
+const BlogPostCards = () => {
+    const dispatch = useDispatch();
+    const blogInfo = useSelector(selectContent)
+    console.log(blogInfo)
+
+    const deleteHandler = (index) => {
+        console.log(index)
+        dispatch(deleteContent(index))
+    } 
     return (
         <CardGroup className="mx-5 cards">
             {blogInfo.map((blogCardData, index) => {
@@ -16,6 +26,7 @@ const BlogPostCards = ({ blogInfo }) => {
                             <Button variant="info">
                                 Learn More
                             </Button>
+                            <Button variant="warning" onClick={() => deleteHandler(index)}>Delete</Button>
                         </Link>
                     </Card.Body>
                 </Card>

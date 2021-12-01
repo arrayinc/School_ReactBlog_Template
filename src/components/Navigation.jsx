@@ -11,7 +11,7 @@ function Navigation() {
   const [show, setShow] = useState(false);
   
   const handleShow = () => {
-    console.log("here")
+   
     setShow(true);
   }
  
