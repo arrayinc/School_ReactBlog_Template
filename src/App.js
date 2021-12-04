@@ -28,9 +28,10 @@ function App() {
   return (
     
     <main className="App">
-      <header>
-        <Navigation />
-      </header>
+      <div className='content-wrap'>
+        <header>
+          <Navigation/>
+        </header>
     
   
       <ScrollToTop />
@@ -46,10 +47,13 @@ function App() {
 
         <Route component={ErrorPage} />
       </Switch>
-      <footer>
-        <Footer />
-      </footer>
+     </div>
+      <footer className="footer">
+      <Footer />
+     </footer>
     </main>
+    
+   
   );
 }
 

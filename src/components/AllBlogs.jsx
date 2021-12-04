@@ -1,3 +1,4 @@
+import Comments from './Comments'
 import { Container, Image } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { selectContent } from "../state/contentSlice";
@@ -6,6 +7,7 @@ import {useParams} from 'react-router-dom'
 const AllBlogs = () => {
     const {index} = useParams()
     const blogInfo = useSelector(selectContent)
+   
    
     return (
         <Container className="blog-section-container">
@@ -23,9 +25,7 @@ const AllBlogs = () => {
             </h5>
             <Image className="blog-image" src={blogInfo[index].blogPostImg} fluid />
             <h3 className="blog-text">{blogInfo[index].content}</h3>
-            <Container className="comment-section">
-                Comment Section
-            </Container>
+                <Comments/>
         </Container>
     );
 };

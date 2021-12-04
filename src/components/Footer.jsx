@@ -8,7 +8,7 @@ import { selectContent } from "../state/contentSlice";
 function Footer() {
   const blogInfo = useSelector(selectContent)
   return (
-      <Navbar className="footer" collapseOnSelect expand="lg" bg="dark" variant="dark" >
+      <Navbar  collapseOnSelect expand="lg" bg="dark" variant="dark" >
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mx-auto">
