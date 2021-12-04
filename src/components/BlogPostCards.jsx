@@ -6,10 +6,10 @@ import { selectContent, deleteContent } from "../state/contentSlice";
 const BlogPostCards = () => {
     const dispatch = useDispatch();
     const blogInfo = useSelector(selectContent)
-    console.log(blogInfo)
+
 
     const deleteHandler = (index) => {
-        console.log(index)
+
         dispatch(deleteContent(index))
     } 
     return (
@@ -22,7 +22,7 @@ const BlogPostCards = () => {
                         <Card.Text className="card-text">
                             {blogCardData.description}
                         </Card.Text>
-                        <Link to={blogCardData.destination}>
+                        <Link to={`/${index}`}>
                             <Button variant="info">
                                 Learn More
                             </Button>

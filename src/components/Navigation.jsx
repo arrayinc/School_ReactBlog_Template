@@ -2,11 +2,14 @@
 import {useState} from 'react';
 import { NavDropdown, Nav, Navbar, Button, Image } from "react-bootstrap";
 import Admin from '../components/Admin'
-import siteData from '../SiteData';
+import {Link } from 'react-router-dom'
+import { useSelector } from "react-redux";
+import { selectContent } from "../state/contentSlice";
+
 
 //generates a header navigation bar with clickable links to navigate to different pages
 function Navigation() {
-
+  const blogInfo = useSelector(selectContent)
   //these are to set up the modal
   const [show, setShow] = useState(false);
   
@@ -33,9 +36,12 @@ function Navigation() {
               title="Blogs"
               id="collapsible-nav-dropdown"
             >
-              <NavDropdown.Item className="blog-dropdown" href="/html">HTML</NavDropdown.Item>       
-              <NavDropdown.Item className="blog-dropdown" href="/javascript">JavaScript</NavDropdown.Item>
-              <NavDropdown.Item className="blog-dropdown" href="/react">React</NavDropdown.Item>
+              {blogInfo.map((blog, i) => {
+                return (
+                <NavDropdown.Item key ={i} className="blog-dropdown"> <Link to ={`/${i}`}>{blog.title}</Link></NavDropdown.Item>    
+                )
+              })}
+         
             </NavDropdown>
             <Nav.Link className="header-link-color mx-5" href="/about">
               About Us
@@ -49,7 +55,7 @@ function Navigation() {
           Sign In
         </Button>
         <Button onClick={handleShow}>Admin</Button>
-        <Admin defaultContent={siteData} setShow={setShow} show={show}/>
+        <Admin setShow={setShow} show={show}/>
       </Navbar>
     </>
   );

@@ -1,9 +1,11 @@
+import siteData from '../SiteData';
 import { Form, Modal, Container, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContent, selectContent } from '../state/contentSlice';
 
-const Admin = ({ defaultContent, setShow, show }) => {
+
+const Admin = ({ setShow, show }) => {
     const dispatch = useDispatch();
     const content = useSelector(selectContent);
 
@@ -22,7 +24,7 @@ const Admin = ({ defaultContent, setShow, show }) => {
     //reset site to original content
     const resetSite = () => {
         handleClose();
-        localStorage.setItem("storedContent", JSON.stringify(defaultContent));
+        localStorage.setItem("storedContent", JSON.stringify(siteData));
         window.location.reload(false);
     }
 
@@ -38,13 +40,26 @@ const Admin = ({ defaultContent, setShow, show }) => {
             setResponse({})
         }
     }
-
+   
     return (
         <Container>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Title>Update Content</Modal.Title>
                 <Form className="bg-secondary">
+                    {siteData.map((input, i) => {
+                      console.log(Object.keys(input))     
+                            
+                                            
+                            //    <Form.Control className="bg-light m-1 text-secondary" size="lg" type="text" placeholder="test" name={Object.keys(input)} onChange={updateField} />
+                        
+                    })
+                    }
+                    <Form.Control className="bg-light m-1 text-secondary" size="lg" type="text" placeholder="author" name="author" onChange={updateField} />
                     <Form.Control className="bg-light m-1 text-secondary" size="lg" type="text" placeholder="title" name="title" onChange={updateField} />
+                    <Form.Control className="bg-light m-1 text-secondary" size="lg" type="text" placeholder="description" name="description" onChange={updateField} />
+                    <Form.Control className="bg-light m-1 text-secondary" size="lg" type="text" placeholder="blogDescription" name="blogDescription" onChange={updateField} />
+                    <Form.Control className="bg-light m-1 text-secondary" size="lg" type="text" placeholder="title" name="title" onChange={updateField} />
+                    <Form.Control className="bg-light m-1 text-secondary" size="lg" type="text" placeholder="blogPostImg" name="blogPostImg" onChange={updateField} />
                 </Form>
                 <Modal.Footer className="bg-dark">
                     <Button size="sm" variant="secondary" onClick={resetSite}>Reset Site</Button>
