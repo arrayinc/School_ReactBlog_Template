@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import AllBlogs from './components/AllBlogs';

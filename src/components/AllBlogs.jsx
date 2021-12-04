@@ -1,4 +1,5 @@
 import { Container, Image } from "react-bootstrap";
+import Comments from "./Comments";
 
 const AllBlogs = ({ blogInfo }) => {
     return (
@@ -18,7 +19,7 @@ const AllBlogs = ({ blogInfo }) => {
             <Image className="blog-image" src={blogInfo.blogPostImg} fluid />
             <h3 className="blog-text">{blogInfo.content}</h3>
             <Container className="comment-section">
-                Comment Section
+                <Comments/>
             </Container>
         </Container>
     );

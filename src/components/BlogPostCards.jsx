@@ -7,10 +7,10 @@ import { selectContent, deleteContent } from "../state/contentSlice";
 const BlogPostCards = ({ blogInfo }) => {
     const dispatch = useDispatch();
     const blogs = useSelector(selectContent);
-    console.log(blogs)
+  
 
     const deleteHandler = (index) => {
-        console.log(index)
+    
         dispatch(deleteContent(index))
     }
     return (
