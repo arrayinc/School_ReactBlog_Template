@@ -2,7 +2,7 @@
 import {useState} from 'react';
 import { NavDropdown, Nav, Navbar, Button, Image } from "react-bootstrap";
 import Admin from '../components/Admin'
-import {Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useSelector } from "react-redux";
 import { selectContent } from "../state/contentSlice";
 
@@ -38,7 +38,8 @@ function Navigation() {
             >
               {blogInfo.map((blog, i) => {
                 return (
-                <NavDropdown.Item key ={i} className="blog-dropdown"> <Link to ={`/${i}`}>{blog.title}</Link></NavDropdown.Item>    
+                <ul key ={i}><NavLink to ={`/${i}`} key ={i}>{blog.title} </NavLink></ul>
+
                 )
               })}
          

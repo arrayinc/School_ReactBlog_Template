@@ -46,14 +46,6 @@ const Admin = ({ setShow, show }) => {
             <Modal show={show} onHide={handleClose}>
                 <Modal.Title>Update Content</Modal.Title>
                 <Form className="bg-secondary">
-                    {siteData.map((input, i) => {
-                      console.log(Object.keys(input))     
-                            
-                                            
-                            //    <Form.Control className="bg-light m-1 text-secondary" size="lg" type="text" placeholder="test" name={Object.keys(input)} onChange={updateField} />
-                        
-                    })
-                    }
                     <Form.Control className="bg-light m-1 text-secondary" size="lg" type="text" placeholder="author" name="author" onChange={updateField} />
                     <Form.Control className="bg-light m-1 text-secondary" size="lg" type="text" placeholder="title" name="title" onChange={updateField} />
                     <Form.Control className="bg-light m-1 text-secondary" size="lg" type="text" placeholder="description" name="description" onChange={updateField} />

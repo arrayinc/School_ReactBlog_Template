@@ -1,6 +1,6 @@
 //imports from react
 import { NavDropdown, Nav, Navbar } from "react-bootstrap";
-import {Link } from 'react-router-dom'
+import {NavLink } from 'react-router-dom'
 import { useSelector } from "react-redux";
 import { selectContent } from "../state/contentSlice";
 
@@ -23,10 +23,8 @@ function Footer() {
             >
               {blogInfo.map((blog, i) => {
                 return (
-              <NavDropdown.Item key={i}>
-               <Link to ={`/${i}`}>{blog.title}</Link>
-              </NavDropdown.Item>
-               )
+                <ul key ={i}><NavLink to ={`/${i}`} >{blog.title} </NavLink></ul>
+                )
               })}
             </NavDropdown>
           </Nav>
