@@ -1,13 +1,24 @@
 //imports from react
+import {useState} from 'react';
 import { NavDropdown, Nav, Navbar, Button, Image } from "react-bootstrap";
-import { useState} from 'react'
-import Admin from './Admin';
-import siteData from '../SiteData';
+import Admin from '../components/Admin'
+import { NavLink } from 'react-router-dom'
+import { useSelector } from "react-redux";
+import { selectContent } from "../state/contentSlice";
+
+
 //generates a header navigation bar with clickable links to navigate to different pages
 function Navigation() {
+  const blogInfo = useSelector(selectContent)
+  //these are to set up the modal
+  const [show, setShow] = useState(false);
+  
+  const handleShow = () => {
+   
+    setShow(true);
+  }
+ 
 
-  const [show, setShow] = useState(false); 
-  const handleShow = () => setShow(true);
   return (
     <>
       <Navbar collapseOnSelect className="navBar" expand="lg" bg="secondary" variant="dark">
@@ -25,9 +36,13 @@ function Navigation() {
               title="Blogs"
               id="collapsible-nav-dropdown"
             >
-              <NavDropdown.Item className="blog-dropdown" href="/html">HTML</NavDropdown.Item>       
-              <NavDropdown.Item className="blog-dropdown" href="/javascript">JavaScript</NavDropdown.Item>
-              <NavDropdown.Item className="blog-dropdown" href="/react">React</NavDropdown.Item>
+              {blogInfo.map((blog, i) => {
+                return (
+                <ul key ={i}><NavLink to ={`/${i}`} key ={i}>{blog.title} </NavLink></ul>
+
+                )
+              })}
+         
             </NavDropdown>
             <Nav.Link className="header-link-color mx-5" href="/about">
               About Us
@@ -44,6 +59,8 @@ function Navigation() {
         <Button className="header-button mx-5" size="lg" variant="outline-dark">
           Sign In
         </Button>
+        <Button onClick={handleShow}>Admin</Button>
+        <Admin setShow={setShow} show={show}/>
       </Navbar>
       <Admin  defaultContent={siteData} setShow={setShow} show={show} />
     </>

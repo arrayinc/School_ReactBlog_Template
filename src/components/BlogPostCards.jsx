@@ -3,16 +3,15 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { selectContent, deleteContent } from "../state/contentSlice";
 
-
-const BlogPostCards = ({ blogInfo }) => {
+const BlogPostCards = () => {
     const dispatch = useDispatch();
-    const blogs = useSelector(selectContent);
-  
+    const blogInfo = useSelector(selectContent)
+
 
     const deleteHandler = (index) => {
-    
+
         dispatch(deleteContent(index))
-    }
+    } 
     return (
         <CardGroup className="mx-5 cards">
             {blogs.map((blogCardData, index) => {
@@ -23,10 +22,11 @@ const BlogPostCards = ({ blogInfo }) => {
                         <Card.Text className="card-text">
                             {blogCardData.description}
                         </Card.Text>
-                        <Link to={blogCardData.destination}>
+                        <Link to={`/${index}`}>
                             <Button variant="info">
                                 Learn More
                             </Button>
+                            <Button variant="warning" onClick={() => deleteHandler(index)}>Delete</Button>
                         </Link>
                         <Button variant="warning" onClick={() => deleteHandler(index)}>
                                 Delete

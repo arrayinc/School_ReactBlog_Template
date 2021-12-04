@@ -1,11 +1,11 @@
 import BlogPostCards from "./BlogPostCards";
 import HomepageCarousel from "./HomePageCarousel";
 
-const Homepage = ({ blogInfo }) => {
+const Homepage = () => {
     return (
         <>
-        <HomepageCarousel blogInfo={blogInfo} />
-        <BlogPostCards blogInfo={blogInfo} />
+        <HomepageCarousel />
+        <BlogPostCards />
         </>
     );
 };

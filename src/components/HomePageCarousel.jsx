@@ -1,9 +1,14 @@
 import { Container, Carousel } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { selectContent} from "../state/contentSlice";
 
-const HomepageCarousel = ({ blogInfo }) => {
-    return (
+
+const HomepageCarousel = () => {
+    const blogInfo = useSelector(selectContent)
+      return (
         <Container className="container-fluid p-0" fluid>
             <Carousel>
+                {/* this map breaks if items are added via admin page */}
                 {blogInfo.map((carouselData, index) => {
                     return <Carousel.Item key={index}>
                         <img

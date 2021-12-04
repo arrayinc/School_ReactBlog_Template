@@ -1,8 +1,12 @@
 //imports from react
 import { NavDropdown, Nav, Navbar } from "react-bootstrap";
+import {NavLink } from 'react-router-dom'
+import { useSelector } from "react-redux";
+import { selectContent } from "../state/contentSlice";
 
 //generates a footer navigation bar with clickable links to navigate to different pages
 function Footer() {
+  const blogInfo = useSelector(selectContent)
   return (
       <Navbar className="footer" collapseOnSelect expand="lg" bg="dark" variant="dark" >
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -17,15 +21,11 @@ function Footer() {
               drop="up"
               title="Blogs"
             >
-              <NavDropdown.Item href="/html">
-                HTML
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/javascript">
-                JavaScript
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/react">
-                React
-              </NavDropdown.Item>
+              {blogInfo.map((blog, i) => {
+                return (
+                <ul key ={i}><NavLink to ={`/${i}`} >{blog.title} </NavLink></ul>
+                )
+              })}
             </NavDropdown>
           </Nav>
           <Nav className="mx-auto">

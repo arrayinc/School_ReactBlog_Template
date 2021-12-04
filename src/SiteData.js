@@ -15,8 +15,6 @@ import carouselPic3 from "./assets/carpic3.jpeg";
 //contains images and text from the entire blog site
 const siteData = [
   {
-    id: "html",
-    destination: "/html",
     blogPreviewImg: HTML,
     title: "Hypertext Markup Language",
     description:
@@ -40,12 +38,10 @@ const siteData = [
     },
   },
   {
-    id: "javascript",
-    destination: "/javascript",
     blogPreviewImg: javaScript,
     title: "JavaScript",
     description:
-      "Discover how widley used JavaScript is, and why you don't want to design platforms without it.",
+      "Discover how widely used JavaScript is, and why you don't want to design platforms without it.",
     blogPostImg: blog2,
     author: {
       name: "Professor Jav A. Script",
@@ -65,8 +61,6 @@ const siteData = [
     },
   },
   {
-    id: "react",
-    destination: "/react",
     blogPreviewImg: react,
     title: "ReactJS",
     description:
