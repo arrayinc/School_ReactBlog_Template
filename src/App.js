@@ -1,4 +1,3 @@
-import './App.css';
 import { useEffect } from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import Homepage from './components/Homepage';

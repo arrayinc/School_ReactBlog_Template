@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 let comments = []
 let storedComments = JSON.parse(localStorage.getItem("storedComments"));
-storedComments ? comments = storedComments :  comments = comments
+if (storedComments) comments = storedComments 
 
 export const commentSlice = createSlice ({
     name: 'comments',

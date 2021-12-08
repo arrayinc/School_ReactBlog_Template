@@ -23,9 +23,10 @@ const AllBlogs = () => {
             <h5 className="blog-author-info date-published-text">
                 Published {blogInfo[index].datePublished}
             </h5>
+             
             <Image className="blog-image" src={blogInfo[index].blogPostImg} fluid />
             <h3 className="blog-text">{blogInfo[index].content}</h3>
-                <Comments/>
+                <Comments index={index}/>
         </Container>
     );
 };

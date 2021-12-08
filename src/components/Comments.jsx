@@ -1,74 +1,124 @@
 import React, { useState } from "react";
-import {  Button, Form } from "react-bootstrap";
+import { Button, Form, Accordion } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { addComments, selectComments } from '../state/commentSlice';
+import { useParams } from 'react-router-dom'
 
 const Comments = () => {
+  const { index } = useParams()
   const dispatch = useDispatch();
   const commentList = useSelector(selectComments);
   const storeCommentList = () => dispatch(addComments([...commentList, comment]));
-  const saveCommentList = () => localStorage.setItem("storedComments", JSON.stringify(commentList));
-const [ comment, setComment ] = useState({});
 
-//if (comment.name && comment.comment) {console.log(comment)}
-   
-const onSubmit = (e) => {
-        e.preventDefault();
+  const [comment, setComment] = useState({});
+  const [threadNum, setThreadNum] = useState(1)
+  //const [commentIndex, setCommentIndex] = useState(index)
 
-        //prevent empty or duplicate comments
-        if (comment.name && comment.comment) {
-        if (comment !== commentList[commentList.length-1]) {
+  //if (comment.name && comment.comment) {console.log(comment)}
+  //console.log(comment)
+  const onSubmit = (e) => {
+    e.preventDefault();
 
-        // send comment list to redux and local storage  
-         storeCommentList();
-         //saveCommentList();
-         }
-        }
+    //prevent empty or duplicate comments
+    if (comment.name && comment.comment) {
+      if (comment !== commentList[commentList.length - 1]) {
 
-        //reset form and memory
-         setComment({})
-         e.target.reset()
-    
-         
+        // send comment list to redux 
+        storeCommentList();
+        setThreadNum(threadNum + 1)
+
+      }
     }
 
-    const updateField = (e) => {
-        setComment({
-            ...comment,
-            [e.target.name]: e.target.value
-        })  
-    }
+    //reset form and memory
+    setComment({})
+    e.target.reset()
+
+
+  }
+
+  const updateField = (e) => {
+    setComment({
+      ...comment,
+      index: index,
+      thread: threadNum,
+      [e.target.name]: e.target.value
+    })
+
+  }
+
+  //   const Reply = (e) => {
+  //     setComment({
+  //         ...comment,
+  //         index: index,
+  //         thread: threadNum,
+  //          [e.target.name]: e.target.value
+  //     })  
+
+  // }
+
+  const Replies = (entry) => {
+    return (
+
+      //if (entry.reply.thread = entry.thread) {
+      <Accordion >
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>Reply</Accordion.Header>
+          <Accordion.Body>
+            <Form onSubmit={onSubmit}>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Control name="name" placeholder="name" onChange={updateField} />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                <Form.Control as="textarea" placeholder="comment" name="comment" rows={3} onChange={updateField} />
+              </Form.Group>
+              <Button type='Submit'>Submit</Button>
+            </Form>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+      //}
+    )
+  }
+
   return (
     <div>
-      <h1>Leave a comment:</h1>
-      <Form onSubmit={onSubmit}>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Control name="name" placeholder="name"  onChange={updateField}/>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-          <Form.Control as="textarea" placeholder="comment" name="comment" rows={3} onChange={updateField}/>
-        </Form.Group>
-        <Button type='Submit'>Submit</Button>
-      </Form>
-      {console.log(commentList)}
-         
-          {commentList.map((entry, i) => {
-             
-                return (
-                    <div key={i}>
-                   <h1> {entry.name}: {entry.comment}</h1>
-                   <Button>Reply</Button>
-                   </div>
-                    )
-              
-                
-             })
-         }
-   
-       
-      
+
+      <Accordion >
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>Leave a Comment</Accordion.Header>
+          <Accordion.Body>
+            <Form onSubmit={onSubmit}>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Control name="name" placeholder="name" onChange={updateField} />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                <Form.Control as="textarea" placeholder="comment" name="comment" rows={3} onChange={updateField} />
+              </Form.Group>
+              <Button type='Submit'>Submit</Button>
+            </Form>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+
+
+
+
+      {commentList.map((entry, i) => {
+        if (entry.index === index) {
+          return (
+            <div key={i}>
+              <h2> {entry.name} says:</h2>
+              <h3> {entry.comment} </h3>
+              <Replies />
+            </div>
+          )
+        }
+      })}
     </div>
   );
 };
+
+
 
 export default Comments;

@@ -35,7 +35,7 @@ const siteData = [
       carouselTitle: 'Explore a new path',
       carouselDescription: 'Immerse yourself in the world of coding.',
       alt: 'girl looking at camera with lights and code projected on face',
-    },
+    }
   },
   {
     blogPreviewImg: javaScript,
@@ -58,7 +58,7 @@ const siteData = [
       carouselTitle: 'Never been easier',
       carouselDescription: 'Learn to code from the comfort of your home.',
       alt: 'computer on desk with code displayed on screen',
-    },
+    }
   },
   {
     blogPreviewImg: react,
@@ -81,8 +81,10 @@ const siteData = [
       carouselTitle: 'Create a new perspective',
       carouselDescription: 'Change how you view the world around you.',
       alt: 'blurry computer screen with clear view through glass lenses',
-    },
-  },
+    }
+      
+}
+  
 ];
 
 export default siteData;
