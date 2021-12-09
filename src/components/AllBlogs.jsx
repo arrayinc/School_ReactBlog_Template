@@ -26,7 +26,8 @@ const AllBlogs = () => {
              
             <Image className="blog-image" src={blogInfo[index].blogPostImg} fluid />
             <h3 className="blog-text">{blogInfo[index].content}</h3>
-                <Comments index={index}/>
+            {/* //don't need to pass index to comments, the url doesn't change so useParams can get it */}
+            <Comments/>    
         </Container>
     );
 };

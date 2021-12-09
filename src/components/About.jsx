@@ -4,6 +4,7 @@ import { Image, Container, Row, Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { selectContent} from "../state/contentSlice";
 
+
 //function that passes a use state for author clicked and picture size
 const About = () => {
   const blogInfo = useSelector(selectContent)
@@ -15,8 +16,7 @@ const About = () => {
     blogInfo.map((blog, i) => document.querySelectorAll(".about-image")[i].style.opacity = ""
     
     )
-    // document.querySelectorAll(".about-image")[1].style.opacity = "";
-    // document.querySelectorAll(".about-image")[2].style.opacity = "";
+   
     try {
       document.querySelectorAll(".about-image")[pictureOpacity].style.opacity =
         "70%";
@@ -38,6 +38,7 @@ const About = () => {
                  src={blog.author.avatar}
                  roundedCircle
                />
+                
              </Col>
             )}
            
@@ -50,6 +51,7 @@ const About = () => {
           <h4>{authorClicked.about}</h4>
         </Container>
       </Container>
+      
   );
 }
 export default About;

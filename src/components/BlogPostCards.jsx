@@ -30,7 +30,9 @@ const BlogPostCards = () => {
                             <Button variant="warning" onClick={() => deleteHandler(index)}>Delete</Button>
                         </Link>
                     </Card.Body>
+                    
                 </Card>
+                
             })}
         </CardGroup>
     );
