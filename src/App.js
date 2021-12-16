@@ -9,7 +9,7 @@ import Contact from './components/Contact';
 import ErrorPage from './components/ErrorPage';
 
 import { useDispatch  } from 'react-redux';
-import { addComments } from './state/commentSlice'
+import { addContent } from './state/contentSlice'
 
 
 
@@ -25,23 +25,27 @@ function ScrollToTop() {
 }
  
 
+
+
+ 
+
+
 function App() {
+  
   const dispatch = useDispatch();
-
-
-  const commentList =  
-  fetch('/getcomments')
-  .then(response => response.json())
-  .then(data => {
-      console.log([data]) 
+  const GetContent = () => {
+    fetch('/getcontent')
+    .then(response => response.json())
+    .then(data => {
+      dispatch(addContent(data))
+    })
+   
   }
-  )
 
+  useEffect(() => {
+    GetContent()
+    });
 
-  //const storeCommentList = () => dispatch(addComments(commentList));
-// useEffect(() => {
-// getSiteData()
-// });
 
   return (
     
@@ -58,7 +62,7 @@ function App() {
 
         <Route path="/about" component={About} /> 
       
-         {/* <Route path="/contact" component={Contact} /> */}
+         <Route path="/contact" component={Contact} />
 
          <Route path="/:index" component={AllBlogs}/> 
 
@@ -66,7 +70,7 @@ function App() {
       </Switch>
      </div>
       <footer className="footer">
-      {/* <Footer /> */}
+      <Footer />
      </footer>
     </main>
     

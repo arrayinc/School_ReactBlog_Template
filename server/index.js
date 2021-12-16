@@ -2,17 +2,16 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const PORT = 5000; 
-var cors = require('cors')
 const fs = require('fs'); //to write to file
 app.use(express.json()) //to read json
-app.use(cors());
+//app.use(cors());
 
 
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../build')));
 
 app.get('/express_backend', (req, res) => { //Line 9
-  res.send({ express: 'YOUR EXPRESS BACKEND IS totally CONNECTED TO REACT' }); //Line 10
+  res.send({ express: 'YOUR EXPRESS BACKEND IS totally CONNECTED TO REACT' }); 
 });
 
 app.get('/getcomments', (req, res) => {

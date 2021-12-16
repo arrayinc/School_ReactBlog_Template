@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import siteData from '../SiteData'
- 
+import localData from '../SiteData';
+import serverData from '../content.json';
+  
  
   //to upload list:
   const contentUpload = (data) => {
@@ -12,19 +13,11 @@ import siteData from '../SiteData'
       body: JSON.stringify(data) //send updated calendar info 
     })
   }
-  const content = () => {fetch('/getcontent')
- .then(response => response.json())
- .then(data => {
-   console.log(data)
- })
-}
- 
- content()
 
 export const contentSlice = createSlice ({
     name: 'content',
     initialState: {
-        content: siteData
+        content: []
     },
     reducers: {
         addContent: (state, action) => {
