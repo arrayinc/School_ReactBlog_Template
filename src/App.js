@@ -8,6 +8,10 @@ import About from './components/About';
 import Contact from './components/Contact';
 import ErrorPage from './components/ErrorPage';
 
+import { useDispatch  } from 'react-redux';
+import { addComments } from './state/commentSlice'
+
+
 
 //function that has a scroll to top button appear upon scrolling down on pages which, when clicked, will take you to top of page
 function ScrollToTop() {
@@ -19,10 +23,25 @@ function ScrollToTop() {
 
   return null;
 }
-
+ 
 
 function App() {
+  const dispatch = useDispatch();
 
+
+  const commentList =  
+  fetch('/getcomments')
+  .then(response => response.json())
+  .then(data => {
+      console.log([data]) 
+  }
+  )
+
+
+  //const storeCommentList = () => dispatch(addComments(commentList));
+// useEffect(() => {
+// getSiteData()
+// });
 
   return (
     
@@ -37,18 +56,17 @@ function App() {
       <Switch>
         <Route exact path="/" component={Homepage} />
 
-        <Route path="/about" component={About} />
+        <Route path="/about" component={About} /> 
+      
+         {/* <Route path="/contact" component={Contact} /> */}
 
-        <Route path="/contact" component={Contact} />
-
-        <Route path="/:index" component={AllBlogs}/>
-
+         <Route path="/:index" component={AllBlogs}/> 
 
         <Route component={ErrorPage} />
       </Switch>
      </div>
       <footer className="footer">
-      <Footer />
+      {/* <Footer /> */}
      </footer>
     </main>
     

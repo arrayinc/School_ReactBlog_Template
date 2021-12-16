@@ -4,8 +4,8 @@ import HomepageCarousel from "./HomePageCarousel";
 const Homepage = () => {
     return (
         <>
-        <HomepageCarousel />
-        <BlogPostCards />
+        <HomepageCarousel /> 
+         <BlogPostCards />
         </>
     );
 };

@@ -3,6 +3,7 @@ import { Form, Modal, Container, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContent, selectContent } from '../state/contentSlice';
+import { addComments } from '../state/commentSlice'
 
 
 const Admin = ({ setShow, show }) => {
@@ -28,6 +29,12 @@ const Admin = ({ setShow, show }) => {
         window.location.reload(false);
     }
 
+    const resetComments = () => {
+        handleClose();
+        localStorage.clear("storedComments");
+        window.location.reload(false);
+    }
+
     //send updated library to redux store
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -40,6 +47,36 @@ const Admin = ({ setShow, show }) => {
             setResponse({})
         }
     }
+
+    //test the back end
+    const expressTest = () => {
+        fetch('/express_backend')
+          .then(response => response.text())
+          .then(data => {
+            alert(data)
+          }
+          )
+      }
+
+      const getSiteData = () => {
+         
+        fetch('/getcomments')
+          .then(response => response.json())
+          .then(data => {
+            dispatch(addComments(data))
+          }
+          )
+      
+        fetch('/getcontent')
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+         dispatch(addContent(data))
+          }
+          )
+      }
+       
+      //getSiteData() 
    
     return (
         <Container>
@@ -55,6 +92,9 @@ const Admin = ({ setShow, show }) => {
                 </Form>
                 <Modal.Footer className="bg-dark">
                     <Button size="sm" variant="secondary" onClick={resetSite}>Reset Site</Button>
+                    <Button size="sm" variant="secondary" onClick={resetComments}>Reset Comments</Button>
+                    <Button size="sm" variant="secondary" onClick={expressTest}>Test Backend</Button>
+                    <Button size="sm" variant="secondary" onClick={getSiteData}>Reload Site</Button>
                     <Button onClick={handleSubmit}>Submit</Button>
                 </Modal.Footer>
             </Modal>

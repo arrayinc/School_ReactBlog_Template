@@ -1,23 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit';
-import siteData from '../SiteData';
-let content = []
-let storedContent = JSON.parse(localStorage.getItem("storedContent"));
-storedContent ? content = storedContent :  content = siteData
+import siteData from '../SiteData'
+ 
+ 
+  //to upload list:
+  const contentUpload = (data) => {
+    fetch('/postcontent', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data) //send updated calendar info 
+    })
+  }
+  const content = () => {fetch('/getcontent')
+ .then(response => response.json())
+ .then(data => {
+   console.log(data)
+ })
+}
+ 
+ content()
 
 export const contentSlice = createSlice ({
     name: 'content',
     initialState: {
-        content: content
+        content: siteData
     },
     reducers: {
         addContent: (state, action) => {
-            console.log(action.payload)
         state.content = action.payload
-        localStorage.setItem('storedContent', JSON.stringify(state.content) ); //need to fix
+        console.log(state.content)
+        //localStorage.setItem('storedContent', JSON.stringify(state.content) );
+        contentUpload(state.content)
         },
         deleteContent: (state, action) => {
             state.content.splice(action.payload, 1);
             localStorage.setItem("storedContent", JSON.stringify(state.content))
+            contentUpload(state.content)
         }
     }
 

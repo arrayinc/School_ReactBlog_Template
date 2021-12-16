@@ -1,23 +1,31 @@
 //imports from react
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { NavDropdown, Nav, Navbar, Button, Image } from "react-bootstrap";
 import Admin from '../components/Admin'
 import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { addContent } from '../state/contentSlice';
+import { addComments } from '../state/commentSlice';
 import { useSelector } from "react-redux";
 import { selectContent } from "../state/contentSlice";
 
 
 //generates a header navigation bar with clickable links to navigate to different pages
 function Navigation() {
+ 
+ 
+
+
   const blogInfo = useSelector(selectContent)
-  //these are to set up the modal
+
   const [show, setShow] = useState(false);
   
   const handleShow = () => {
    
     setShow(true);
   }
- 
+
+
 
   return (
     <>
