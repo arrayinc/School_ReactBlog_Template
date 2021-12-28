@@ -35,7 +35,7 @@ const About = () => {
                    setPictureOpacity(i);
                  }}
                  className="about-image"
-                 src={blog.author.avatar}
+                 //src={blog.author.avatar}
                  roundedCircle
                />
                 

@@ -37,6 +37,7 @@ function App() {
     fetch('/getcontent')
     .then(response => response.json())
     .then(data => {
+      console.log(data)
       dispatch(addContent(data))
     })
    

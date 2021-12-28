@@ -17,6 +17,7 @@ const AllBlogs = () => {
       fetch('/getcomments')
       .then(response => response.json())
       .then(data => {
+          console.log("get comments")
         dispatch(addComments(data))
       })
     }
@@ -45,7 +46,7 @@ const AllBlogs = () => {
                 Published {blogInfo[index].datePublished}
             </h5>
              
-            <Image className="blog-image" src={blogInfo[index].blogPostImg} fluid />
+            {/* <Image className="blog-image" src={blogInfo[index].blogPostImg} fluid /> */}
             <h3 className="blog-text">{blogInfo[index].content}</h3>
         </Container>
         <Comments />

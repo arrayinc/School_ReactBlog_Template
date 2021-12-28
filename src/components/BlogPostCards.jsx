@@ -16,7 +16,7 @@ const BlogPostCards = () => {
         <CardGroup className="mx-5 cards">
             {blogInfo.map((blogCardData, index) => {
                 return <Card key={index} className="mx-5 card">
-                    <Card.Img variant="top" src={blogCardData.blogPreviewImg} />
+                    {/* <Card.Img variant="top" src={blogCardData.blogPreviewImg} /> */}
                     <Card.Body>
                         <Card.Title className="card-text">{blogCardData.title}</Card.Title>
                         <Card.Text className="card-text">
