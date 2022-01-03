@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Container, Button, Form, Accordion, Card} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { addComments, selectComments } from '../state/commentSlice'
@@ -8,33 +8,10 @@ const Comments = () => {
     //grab index from the url of the parent component - don't need to pass it as it is already there
     const { index } = useParams();
 
-    //datbase
-
-    const GetComments = () => {
-        fetch('/comments')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-          dispatch(addComments(data))
-        })
-      }
-
- 
-      
-    const commentsUpload = (comments) => {
-        console.log(comments)
-        fetch('/comments', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(comments) 
-        })
-      }
     //global state 
     const dispatch = useDispatch();
     const commentList = useSelector(selectComments); //get list of comments from redux
-
+    const storeCommentList = () => dispatch(addComments([...commentList, comment]));
 
     //local state (component and children)
     const [comment, setComment] = useState({});
@@ -46,8 +23,8 @@ const Comments = () => {
         if (comment.name && comment.comment) {
             //or duplicate comment
             if (comment !== commentList[commentList.length - 1]) {
-                commentsUpload(comment);
-                }
+                storeCommentList();
+            }
         }
         //reset the form and component state 
         setComment({});
@@ -61,11 +38,6 @@ const Comments = () => {
             [e.target.name]: e.target.value
         })
     }
-
-    useEffect(() => {
-        GetComments();
-      }, [comment]);
-    
 
     return (
         <div>
