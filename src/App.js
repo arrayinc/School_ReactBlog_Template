@@ -8,8 +8,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import ErrorPage from './components/ErrorPage';
 
-import { useDispatch  } from 'react-redux';
-import { addContent } from './state/contentSlice'
+
 
 
 
@@ -31,22 +30,6 @@ function ScrollToTop() {
 
 
 function App() {
-  
-  const dispatch = useDispatch();
-  // const GetContent = () => {
-  //   fetch('/getcontent')
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     console.log(data)
-  //     dispatch(addContent(data))
-  //   })
-   
-  // }
-
-  // useEffect(() => {
-  //   GetContent()
-  //   });
-
 
   return (
     

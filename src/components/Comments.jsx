@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Button, Form, Accordion, Card} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { addComments } from '../state/commentSlice'
+import { addComments, selectComments } from '../state/commentSlice'
 import { useParams } from 'react-router-dom';
 
 const Comments = () => {

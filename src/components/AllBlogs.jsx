@@ -15,14 +15,13 @@ const AllBlogs = () => {
       fetch('/comments')
       .then(response => response.json())
       .then(data => {
-          console.log(data)
         dispatch(addComments(data))
       })
     }
 
     const {index} = useParams()
     const blogInfo = useSelector(selectContent)
-    console.log(blogInfo)
+
 
     useEffect(() => {
         GetComments()
@@ -45,7 +44,7 @@ const AllBlogs = () => {
                 Published {blogInfo[index].datePublished}
             </h5>
              
-            {/* <Image className="blog-image" src={blogInfo[index].blogPostImg} fluid /> */}
+            <Image className="blog-image" src={blogInfo[index].blogPostImg} fluid />
             <h3 className="blog-text">{blogInfo[index].content}</h3>
         </Container>
         <Comments />

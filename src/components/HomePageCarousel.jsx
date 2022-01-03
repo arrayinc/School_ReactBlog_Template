@@ -7,7 +7,7 @@ const HomepageCarousel = () => {
     const blogInfo = useSelector(selectContent)
       return (
         <Container className="container-fluid p-0" fluid>
-            {/* <Carousel>
+            <Carousel>
                 {blogInfo.map((carouselData, index) => {
                     return <Carousel.Item key={index}>
                         <img
@@ -21,7 +21,7 @@ const HomepageCarousel = () => {
                         </Carousel.Caption>
                     </Carousel.Item>
                 })}
-            </Carousel> */}
+            </Carousel>
         </Container>
     );
 };
