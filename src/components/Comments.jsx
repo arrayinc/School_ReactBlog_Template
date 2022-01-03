@@ -59,7 +59,7 @@ const Comments = () => {
         getComments();
       }, [comment]);
     
-
+ //getComments()
     return (
         <div>
             <Container>
