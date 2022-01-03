@@ -1,33 +1,18 @@
-import { useEffect } from 'react';
 import { Container, Image } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { selectContent } from "../state/contentSlice";
-import { addComments } from '../state/commentSlice'
-import { useDispatch  } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Comments from './Comments';
 
 
 const AllBlogs = () => {
 
-    const dispatch = useDispatch();
-    const GetComments = () => {
-      fetch('/comments')
-      .then(response => response.json())
-      .then(data => {
-        dispatch(addComments(data))
-      })
-    }
+ 
+
 
     const {index} = useParams()
     const blogInfo = useSelector(selectContent)
 
-
-    useEffect(() => {
-        GetComments()
-        });
-
-   
     return (
         <>
         <Container className="blog-section-container">

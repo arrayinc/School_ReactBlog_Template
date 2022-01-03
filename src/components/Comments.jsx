@@ -5,12 +5,11 @@ import { addComments, selectComments } from '../state/commentSlice'
 import { useParams } from 'react-router-dom';
 
 const Comments = () => {
-    //grab index from the url of the parent component - don't need to pass it as it is already there
     const { index } = useParams();
 
-    //datbase
+    // add getComments and commentsUpload to pull info from database
 
-    const GetComments = () => {
+    const getComments = () => {
         fetch('/comments')
         .then(response => response.json())
         .then(data => {
@@ -18,9 +17,7 @@ const Comments = () => {
           dispatch(addComments(data))
         })
       }
-
- 
-      
+     
     const commentsUpload = (comments) => {
         console.log(comments)
         fetch('/comments', {
@@ -31,25 +28,21 @@ const Comments = () => {
           body: JSON.stringify(comments) 
         })
       }
-    //global state 
+
+
     const dispatch = useDispatch();
-    const commentList = useSelector(selectComments); //get list of comments from redux
+    const commentList = useSelector(selectComments); 
+                                                        //remove storeCommentList
 
-
-    //local state (component and children)
     const [comment, setComment] = useState({});
 
     const onSubmit = (e) => {
         e.preventDefault();
-
-        //prevent empty comments
         if (comment.name && comment.comment) {
-            //or duplicate comment
             if (comment !== commentList[commentList.length - 1]) {
-                commentsUpload(comment);
+                commentsUpload(comment);  //rm storeCommentList and add commentsUpload
                 }
         }
-        //reset the form and component state 
         setComment({});
         e.target.reset()
     }
@@ -61,9 +54,9 @@ const Comments = () => {
             [e.target.name]: e.target.value
         })
     }
-
+                                                            //add useEffect then got to commentSlice if you have not
     useEffect(() => {
-        GetComments();
+        getComments();
       }, [comment]);
     
 

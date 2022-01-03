@@ -9,3 +9,5 @@ const commentSchema = mongoose.Schema({
 const Comment = mongoose.model('Comment', commentSchema);
 
 export default Comment;
+
+//then controllers/comments.js

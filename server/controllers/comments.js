@@ -11,7 +11,6 @@ export const getComments = async (req, res) => {
 
 export const createComment = async (req, res) => {
     const comment = req.body;
-    console.log(comment)
 
    const newComment = new Comment( {...comment})
     try {
@@ -23,3 +22,4 @@ export const createComment = async (req, res) => {
     }
 }
 
+//then routes/comments.js
