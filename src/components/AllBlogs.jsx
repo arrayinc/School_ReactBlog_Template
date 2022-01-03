@@ -8,19 +8,18 @@ import { useParams } from 'react-router-dom';
 import Comments from './Comments';
 
 
-
-
 const AllBlogs = () => {
 
     const dispatch = useDispatch();
     const GetComments = () => {
-      fetch('/getcomments')
+      fetch('/comments')
       .then(response => response.json())
       .then(data => {
-          console.log("get comments")
+          console.log(data)
         dispatch(addComments(data))
       })
     }
+
     const {index} = useParams()
     const blogInfo = useSelector(selectContent)
     console.log(blogInfo)

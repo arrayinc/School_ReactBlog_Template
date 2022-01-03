@@ -25,7 +25,7 @@ import localData from '../SiteData';
 export const contentSlice = createSlice ({
     name: 'content',
     initialState: {
-        content: []
+        content: localData
     },
     reducers: {
         addContent: (state, action) => {

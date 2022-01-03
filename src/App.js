@@ -33,19 +33,19 @@ function ScrollToTop() {
 function App() {
   
   const dispatch = useDispatch();
-  const GetContent = () => {
-    fetch('/getcontent')
-    .then(response => response.json())
-    .then(data => {
-      console.log(data)
-      dispatch(addContent(data))
-    })
+  // const GetContent = () => {
+  //   fetch('/getcontent')
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     console.log(data)
+  //     dispatch(addContent(data))
+  //   })
    
-  }
+  // }
 
-  useEffect(() => {
-    GetContent()
-    });
+  // useEffect(() => {
+  //   GetContent()
+  //   });
 
 
   return (
