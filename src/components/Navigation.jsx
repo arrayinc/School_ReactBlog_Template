@@ -1,11 +1,8 @@
 //imports from react
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import { NavDropdown, Nav, Navbar, Button, Image } from "react-bootstrap";
 import Admin from '../components/Admin'
 import { NavLink } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
-import { addContent } from '../state/contentSlice';
-import { addComments } from '../state/commentSlice';
 import { useSelector } from "react-redux";
 import { selectContent } from "../state/contentSlice";
 
